@@ -1,5 +1,5 @@
 "use client"
-import React, {useState, useEffect, use} from 'react'
+import React, {useState, useEffect} from 'react'
 
 type User ={
     id : number,
@@ -26,16 +26,22 @@ export default function UserClient() {
               } else{
                 throw new Error("failed to load")
               }
-            } catch(err){
+            } catch{
                 setError("Failed to laod");
-                console.log("error ")
+                console.log("error ",error)
                 
             } finally{
                 setLoading(false);
             }
         }
         fetchUsers();
-    },[])
+    },[error])
+
+    if(loading){
+      return(
+        <p>loading ....</p>
+      )
+    }
   return (
     <div>
         <ul>
