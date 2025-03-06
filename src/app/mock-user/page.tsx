@@ -13,7 +13,7 @@ export default async function MockUser() {
     async function adduser(formData:FormData) {
         "use server"
         const name = formData.get("name");
-        const res = await fetch("https://67c957a90acf98d07089d928.mockapi.io/users",{
+        await fetch("https://67c957a90acf98d07089d928.mockapi.io/users",{
             method: "POST",
             headers:{
                 "Content-Type": "application/json"
@@ -21,8 +21,6 @@ export default async function MockUser() {
             body: JSON.stringify({name})
         });
         revalidatePath('/mock-user')
-        const newUser = await res.json();
-        console.log("newUser>>",newUser)
 
     }
     return (
