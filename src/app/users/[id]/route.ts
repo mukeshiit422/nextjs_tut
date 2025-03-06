@@ -1,9 +1,11 @@
 import { users } from "../route";
-
+interface Params {
+    params: { id: string };
+  }
 export async function GET (_request: Request, 
-    { params }:{ params :{id : string}}
+    { params }: Params
    ) {
-    const {id} = await params ;
+    const { id } =  params ;
     const user = users.find(user => user.id === parseInt(id));
     return Response.json(user);
 }
